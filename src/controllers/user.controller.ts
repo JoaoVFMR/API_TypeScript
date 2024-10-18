@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { createUserService, deleteUserService, findAllUsersService, updateUserService } from "../services/user.service";
+import { createUserService, deleteUserService, findAllUsersService, findUserByIdWithTasksService, updateUserService } from "../services/user.service";
 
 export const createUser = async (req: Request, res: Response) => {
     try {
@@ -31,6 +31,17 @@ export const updateUser = async (req: Request, res: Response) => {
         const user = await updateUserService(Number(req.params.id), req.body)
         return res.status(200).json(user)
     } catch (error) {
-        return res.status(400).json({error})
+        return res.status(400).json({ error })
     }
+}
+
+export const findUserByIdWithTasks = async (req: Request, res: Response) => {
+    const id = Number(req.params.id)
+
+    if (isNaN(id)) {
+        return res.status(400).json({ message: "ID Inválido" })
+    }
+
+    const user = await findUserByIdWithTasksService(id)
+    return res.status(200).json(user)
 }

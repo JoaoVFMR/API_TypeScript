@@ -8,7 +8,7 @@ export const validate = (dto: any) => {
         const errors = await classValidatorValidate(data)
 
         if (errors.length > 0) {
-            return res.status(400).json({errors})
+            return res.status(400).json({ errors })
         }
 
         req.body = data

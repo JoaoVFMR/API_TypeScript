@@ -1,4 +1,4 @@
-import express, {Request, Response} from "express"
+import express, { Request, Response } from "express"
 import routes from "./routes"
 
 const app = express()
@@ -8,6 +8,6 @@ app.use(express.json())
 
 app.use("/api", routes)
 
-app.listen(PORT, ()=>{
+app.listen(PORT, () => {
     console.log(`Rodando em http://localhost:${PORT}`);
 })
